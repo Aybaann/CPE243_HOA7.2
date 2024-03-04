@@ -1,0 +1,14 @@
+---
+- name: Collect log files from control node
+  hosts: controller
+  tasks:
+    - name:  Collect log files
+      fetch:
+        src: /var/log/syslog
+        dest: /home/ivan/CollectLog
+        flat: yes
+      register: syslog
+
+    - name: View syslog
+      debug:
+        var: syslog
